@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output
+public/
+
+# Environment variables
+.env
+.env.*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

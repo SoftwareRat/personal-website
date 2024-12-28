@@ -1,0 +1,56 @@
+---
+title: Your Blog Post Title
+date: YYYY-MM-DD
+tags: [tag1, tag2, tag3]
+thumbnail: /images/blog/your-thumbnail-image.jpg
+excerpt: A brief summary of your blog post that will appear in the blog index and previews. Keep it concise but informative.
+---
+
+# Introduction
+
+Write your introduction here. This is where you set up the context for your blog post.
+
+## Main Section
+
+Your main content goes here. You can use Markdown formatting:
+
+- Bullet points
+- Lists
+- Etc.
+
+### Subsections
+
+You can create subsections using multiple hashtags.
+
+## Code Examples
+
+You can include code blocks:
+
+```javascript
+const example = "This is a code block";
+console.log(example);
+```
+
+## Images
+
+You can include images like this:
+
+![Alt text](/images/your-image.jpg)
+
+## Links
+
+You can [link to other pages or websites](https://example.com)
+
+## Conclusion
+
+Wrap up your blog post with a conclusion.
+
+---
+
+**Note:** Delete this template text and replace it with your actual blog content. Remember to:
+
+1. Update the front matter (the section between `---` at the top)
+2. Set the correct date
+3. Choose appropriate tags
+4. Add a thumbnail image
+5. Write a good excerpt
