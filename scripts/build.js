@@ -3,6 +3,7 @@ import path from "path";
 import { marked } from "marked";
 import frontMatter from "front-matter";
 import handlebars from "handlebars";
+import handlebarsLayouts from "handlebars-layouts";
 import { SitemapStream } from "sitemap";
 import { streamToPromise } from "sitemap";
 import { Readable } from "stream";
@@ -11,6 +12,9 @@ import { fileURLToPath } from "url";
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Register handlebars-layouts
+handlebars.registerHelper(handlebarsLayouts(handlebars));
 
 // Configure marked to allow HTML
 marked.setOptions({
