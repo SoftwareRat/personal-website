@@ -1,91 +1,68 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Posts tagged "{{tag}}" - SoftwareRat</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/highlight.css" />
-  </head>
-  <body>
-    <nav class="main-nav">
-      <div class="container">
-        <a href="/" class="logo">SoftwareRat</a>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="nav-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
-        </div>
-      </div>
-    </nav>
+{{#> default title=title}}
+<div class="blog-header">
+  <div class="container">
+    <h1>Posts tagged "{{tag}}"</h1>
+  </div>
+</div>
 
-    <div class="container">
-      <main class="content">
-        <h1>Posts tagged "{{tag}}"</h1>
-
-        {{#if posts.length}}
-        <div class="blog-posts">
-          {{#each posts}}
-          <article class="blog-post">
-            {{#if thumbnail}}
-            <img class="thumbnail" src="{{thumbnail}}" alt="{{title}}" />
-            {{else}}
-            <img
-              class="thumbnail"
-              src="/images/placeholders/default-thumbnail.svg"
-              alt="{{title}}"
-            />
-            {{/if}}
-            <div class="content">
-              <h3><a href="{{url}}">{{title}}</a></h3>
-              <div class="blog-meta">
-                <span class="date">{{formatDate date}}</span>
-                {{#if tags}}
-                <div class="blog-tags">
-                  {{#each tags}}
-                  <a href="/tags/{{this}}" class="blog-tag">{{this}}</a>
-                  {{/each}}
-                </div>
-                {{/if}}
-              </div>
-              <p>{{excerpt}}</p>
-              <a href="{{url}}" class="read-more">Read More</a>
+<div class="container">
+  <div class="blog-grid">
+    <main class="blog-main">
+      {{#if posts.length}}
+      <div class="blog-posts">
+        {{#each posts}}
+        <article class="blog-post fade-in">
+          {{#if thumbnail}}
+          <img src="{{thumbnail}}" alt="{{title}}" class="thumbnail" />
+          {{/if}}
+          <div class="content">
+            <h2><a href="{{path}}">{{title}}</a></h2>
+            <div class="blog-meta">
+              <span class="date">📅 {{formatDate date}}</span>
+              {{#if readingTime}}
+              <span class="reading-time">⏱️ {{readingTime}} min read</span>
+              {{/if}}
             </div>
-          </article>
+            <p class="excerpt">{{excerpt}}</p>
+            {{#if tags.length}}
+            <div class="tags">
+              🏷️ {{#each tags}}
+              <a href="/tags/{{this}}" class="tag">{{this}}</a>
+              {{/each}}
+            </div>
+            {{/if}}
+            <a href="{{path}}" class="read-more">Read more →</a>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="no-posts">
+        <p>No posts found with this tag.</p>
+      </div>
+      {{/if}}
+    </main>
+
+    <aside class="blog-sidebar">
+      <div class="sidebar-section">
+        <h3>All Tags</h3>
+        <div class="tag-cloud">
+          {{#each tags}}
+          <a
+            href="/tags/{{this}}"
+            class="tag {{#if_eq this ../tag}}active{{/if_eq}}"
+            data-count="{{lookup ../tagCounts this}}"
+            >{{this}}</a
+          >
           {{/each}}
         </div>
-        {{else}}
-        <div class="no-posts">
-          <p>No posts found with tag "{{tag}}".</p>
-        </div>
-        {{/if}}
-
-        <p><a href="/tags">&larr; Back to all tags</a></p>
-      </main>
-    </div>
-
-    <footer>
-      <div class="container">
-        <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
-        </div>
-        <p class="copyright">&copy; 2025 SoftwareRat. All rights reserved.</p>
       </div>
-    </footer>
-
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+      <div class="sidebar-section">
+        <h3>Subscribe</h3>
+        <p>Stay updated with my latest posts</p>
+        <a href="/feed.xml" class="rss-link">📰 RSS Feed</a>
+      </div>
+    </aside>
+  </div>
+</div>
+{{/default}}

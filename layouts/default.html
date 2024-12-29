@@ -1,9 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}} - SoftwareRat</title>
+    <title>{{title}}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Scripts -->
+    <script src="/js/main.js" defer></script>
+    {{#if isBlogPage}}
+    <script src="/js/search.js" defer></script>
+    {{/if}}
+
+    <!-- Favicon -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐀</text></svg>"
@@ -13,22 +32,81 @@
       rel="apple-touch-icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐀</text></svg>"
     />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/highlight.css" />
+
+    <!-- Meta Tags -->
+    <meta name="description" content="{{description}}" />
+    <meta name="author" content="SoftwareRat" />
+    <meta
+      name="theme-color"
+      content="#2563eb"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#1e293b"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:type"
+      content="{{#if isBlogPost}}article{{else}}website{{/if}}"
+    />
+    <meta property="og:url" content="https://softwarerat.tech{{path}}" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    {{#if thumbnail}}
+    <meta property="og:image" content="https://softwarerat.tech{{thumbnail}}" />
+    {{/if}}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://softwarerat.tech{{path}}" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    {{#if thumbnail}}
+    <meta
+      name="twitter:image"
+      content="https://softwarerat.tech{{thumbnail}}"
+    />
+    {{/if}}
+
+    <!-- RSS Feed -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="SoftwareRat's Blog"
+      href="/feed.xml"
+    />
+
+    <!-- Preload -->
+    <link rel="preconnect" href="https://files.softwarerat.tech" />
   </head>
   <body>
     <nav class="main-nav">
       <div class="container">
-        <a href="/" class="logo">SoftwareRat</a>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+        <a href="/" class="logo">🐀 SoftwareRat</a>
+        <div class="nav-controls">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-toggle-light">🌞</span>
+            <span class="theme-toggle-dark">🌙</span>
+          </button>
+          <div class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="nav-links">
           <a href="/about">About</a>
           <a href="/blog">Blog</a>
           <a href="/projects">Projects</a>
+          <a href="/now">Now</a>
+          <a href="/uses">Uses</a>
           <a href="https://files.softwarerat.tech" target="_blank">Files</a>
           <a href="/contact">Contact</a>
           <a href="/donate">Donate</a>
@@ -36,9 +114,18 @@
       </div>
     </nav>
 
-    <div class="container">
-      <main class="content">{{{content}}}</main>
-    </div>
+    <main>
+      {{#if title}}
+      <div class="page-header">
+        <div class="container">
+          <h1>{{title}}</h1>
+        </div>
+      </div>
+      {{/if}}
+      <div class="page-content">
+        <div class="container">{{{content}}}</div>
+      </div>
+    </main>
 
     <footer>
       <div class="container">
@@ -49,11 +136,16 @@
           <a href="https://files.softwarerat.tech" target="_blank">Files</a>
           <a href="/contact">Contact</a>
           <a href="/donate">Donate</a>
+          <a href="/feed.xml">RSS Feed</a>
         </div>
-        <p class="copyright">&copy; 2025 SoftwareRat. All rights reserved.</p>
+        <p class="copyright">
+          &copy; {{currentYear}} SoftwareRat • Built with 💖 and 🐀
+        </p>
       </div>
     </footer>
 
-    <script src="/js/main.js"></script>
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+      ⬆️
+    </button>
   </body>
 </html>

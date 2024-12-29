@@ -1,84 +1,59 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/highlight.css" />
-  </head>
-  <body>
-    <nav class="main-nav">
-      <div class="container">
-        <a href="/" class="logo">SoftwareRat</a>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="nav-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
-      <main class="content">
-        <h1>Blog Posts</h1>
-        <div class="blog-posts">
-          {{#each posts}}
-          <article class="blog-post">
-            {{#if thumbnail}}
-            <img class="thumbnail" src="{{thumbnail}}" alt="{{title}}" />
-            {{else}}
-            <img
-              class="thumbnail"
-              src="/images/placeholders/default-thumbnail.svg"
-              alt="{{title}}"
-            />
-            {{/if}}
-            <div class="content">
-              <h3><a href="{{url}}">{{title}}</a></h3>
-              <div class="blog-meta">
-                <span class="date">{{formatDate date}}</span>
-                {{#if tags}}
-                <div class="blog-tags">
-                  {{#each tags}}
-                  <a href="/tags/{{this}}" class="blog-tag">{{this}}</a>
-                  {{/each}}
-                </div>
-                {{/if}}
-              </div>
-              <p>{{excerpt}}</p>
-              <a href="{{url}}" class="read-more">Read More</a>
-            </div>
-          </article>
-          {{/each}}
-        </div>
-
-        {{{content}}}
-      </main>
+<div class="blog-header">
+  <div class="container">
+    <h1>Blog</h1>
+    <div class="search-container">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search posts..."
+        aria-label="Search posts"
+      />
+      <div class="search-results" id="search-results"></div>
     </div>
+  </div>
+</div>
 
-    <footer>
-      <div class="container">
-        <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
+<div class="blog-grid">
+  <div class="blog-main">
+    <div class="blog-posts">
+      {{#each posts}}
+      <article class="blog-post fade-in">
+        {{#if thumbnail}}
+        <img src="{{thumbnail}}" alt="{{title}}" class="thumbnail" />
+        {{/if}}
+        <div class="post-content">
+          <h2><a href="{{url}}">{{title}}</a></h2>
+          <div class="blog-meta">
+            <span class="date">📅 {{formatDate date}}</span>
+            <span class="reading-time">⏱️ {{readingTime}} min read</span>
+          </div>
+          <p>{{excerpt}}</p>
+          {{#if tags}}
+          <div class="tags">
+            {{#each tags}}
+            <a href="/tags/{{this}}" class="tag">{{this}}</a>
+            {{/each}}
+          </div>
+          {{/if}}
+          <a href="{{url}}" class="read-more">Read more →</a>
         </div>
-        <p class="copyright">&copy; 2025 SoftwareRat. All rights reserved.</p>
-      </div>
-    </footer>
+      </article>
+      {{/each}}
+    </div>
+  </div>
 
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+  <aside class="blog-sidebar">
+    <div class="sidebar-section">
+      <h3>Tags</h3>
+      <div class="tag-cloud">
+        {{#each tags}}
+        <a href="/tags/{{name}}" class="tag" data-count="{{count}}">{{name}}</a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <h3>RSS Feed</h3>
+      <a href="/rss.xml" class="rss-link">📰 Subscribe to RSS</a>
+    </div>
+  </aside>
+</div>

@@ -1,83 +1,52 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/highlight.css" />
-  </head>
-  <body>
-    <nav class="main-nav">
-      <div class="container">
-        <a href="/" class="logo">SoftwareRat</a>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="nav-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
-        </div>
+<div class="blog-header">
+  <div class="container">
+    <h1>{{title}}</h1>
+    <div class="blog-meta">
+      <span class="date">📅 {{formatDate date}}</span>
+      {{#if readingTime}}
+      <span class="reading-time">⏱️ {{readingTime}} min read</span>
+      {{/if}} {{#if tags}}
+      <div class="tags">
+        🏷️ {{#each tags}}
+        <a href="/tags/{{this}}" class="tag">{{this}}</a>
+        {{/each}}
       </div>
-    </nav>
-
-    <div class="container">
-      <main class="content">
-        <div class="blog-header">
-          <h1>{{title}}</h1>
-          {{#if thumbnail}}
-          <img class="blog-thumbnail" src="{{thumbnail}}" alt="{{title}}" />
-          {{else}}
-          <img
-            class="blog-thumbnail"
-            src="/images/placeholders/default-thumbnail.svg"
-            alt="{{title}}"
-          />
-          {{/if}}
-          <div class="blog-meta">
-            <span class="date">{{formatDate date}}</span>
-            {{#if tags}}
-            <div class="blog-tags">
-              {{#each tags}}
-              <a href="/tags/{{this}}" class="blog-tag">{{this}}</a>
-              {{/each}}
-            </div>
-            {{/if}}
-          </div>
-        </div>
-
-        <div class="blog-content">{{{content}}}</div>
-
-        <div class="blog-footer">
-          <div class="blog-tags">
-            {{#each tags}}
-            <a href="/tags/{{this}}" class="blog-tag">{{this}}</a>
-            {{/each}}
-          </div>
-        </div>
-      </main>
+      {{/if}}
     </div>
+  </div>
+</div>
 
-    <footer>
-      <div class="container">
-        <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
-          <a href="https://files.softwarerat.tech" target="_blank">Files</a>
-          <a href="/contact">Contact</a>
-          <a href="/donate">Donate</a>
-        </div>
-        <p class="copyright">&copy; 2025 SoftwareRat. All rights reserved.</p>
-      </div>
-    </footer>
+<article class="blog-content">
+  {{#if thumbnail}}
+  <div class="post-thumbnail">
+    <img src="{{thumbnail}}" alt="{{title}}" />
+  </div>
+  {{/if}} {{{content}}}
+</article>
 
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+<div class="blog-footer">
+  <div class="share-buttons">
+    <h3>Share this post</h3>
+    <a
+      href="https://twitter.com/intent/tweet?text={{title}}&url=https://softwarerat.tech{{path}}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button twitter"
+      >Twitter</a
+    >
+    <a
+      href="https://www.linkedin.com/shareArticle?mini=true&url=https://softwarerat.tech{{path}}&title={{title}}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button linkedin"
+      >LinkedIn</a
+    >
+    <a
+      href="https://www.reddit.com/submit?url=https://softwarerat.tech{{path}}&title={{title}}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button reddit"
+      >Reddit</a
+    >
+  </div>
+</div>

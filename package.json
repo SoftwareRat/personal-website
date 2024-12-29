@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "SoftwareRat's personal website and blog",
   "main": "scripts/build.js",
+  "type": "module",
   "scripts": {
     "build": "node scripts/build.js && node scripts/generate-rss.js",
     "dev": "node scripts/dev.js",
@@ -15,8 +16,11 @@
     "front-matter": "^4.0.2",
     "fs-extra": "^11.2.0",
     "handlebars": "^4.7.8",
+    "handlebars-layouts": "^3.1.4",
     "highlight.js": "^11.9.0",
-    "marked": "^4.3.0"
+    "marked": "^4.3.0",
+    "rss": "^1.2.2",
+    "sitemap": "^8.0.0"
   },
   "devDependencies": {
     "prettier": "^3.0.3"
