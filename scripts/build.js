@@ -321,6 +321,9 @@ function processMarkdownFiles(dir, baseOutputDir) {
       ...attributes,
       currentYear: new Date().getFullYear(),
       currentDate: new Date().toISOString().split("T")[0],
+      title: attributes.title || "SoftwareRat",
+      description: attributes.description || "",
+      timestamp: new Date().toISOString(),
     };
 
     // Process markdown content through Handlebars first
